@@ -261,22 +261,12 @@ void displayUsers() {
         temp = temp->next;
     }
 }
-bool userExists(int userId){
-    User* temp= userHead;
-    while(temp!= NULL){
-        if(userId==temp->id){
-            return true;
-        }
-        temp=temp->next;
-    }
-    return false;
-}
 
 void borrowBook() {
     int userId, bookId;
     cout << "Enter User ID: ";
     cin >> userId;
-    if(userExists(userId)) {    
+    if(isUserIdExists(userId)) {    
     cout << "Enter Book ID to borrow: ";
     cin >> bookId;
     Book* btemp = bookHead;
