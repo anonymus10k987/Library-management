@@ -261,11 +261,22 @@ void displayUsers() {
         temp = temp->next;
     }
 }
+bool userExists(int userId){
+    User* temp= userHead;
+    while(temp!= NULL){
+        if(userId==temp->id){
+            return true;
+        }
+        temp=temp->next;
+    }
+    return false;
+}
 
 void borrowBook() {
     int userId, bookId;
     cout << "Enter User ID: ";
     cin >> userId;
+    if(userExists(userId)) {    
     cout << "Enter Book ID to borrow: ";
     cin >> bookId;
     Book* btemp = bookHead;
@@ -280,6 +291,10 @@ void borrowBook() {
     recordTransaction(userId, bookId, "Borrow");
     saveBooksToFile(); // update availability on disk
     cout << "Book borrowed successfully!\n";
+}
+else{
+    cout << "User does not exists";
+}
 }
 
 void returnBook() {
